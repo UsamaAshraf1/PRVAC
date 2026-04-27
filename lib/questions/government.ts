@@ -5,6 +5,12 @@ export const governmentQuestionnaire: Questionnaire = {
   title: "Government Instrument",
   description: "17 questions for federal and provincial ministries, regulators, and SOEs",
   sections: [
+      {
+      id: "0",
+      title: "Section 0: Personal Information",
+      description: "  Collect respondent's contact details for follow-up and validation purposes",
+      questionIds: ["GOV_0_01", "GOV_0_02", "GOV_0_03", "GOV_0_04"],
+    },
     {
       id: "A",
       title: "Section A: Organisation and Mandate",
@@ -37,6 +43,35 @@ export const governmentQuestionnaire: Questionnaire = {
     },
   ],
   questions: {
+     GOV_0_01: {
+      id: "GOV_0_01",
+      section: "0",
+      sectionTitle: "Personal Information",
+      question: "What is your name?",
+      type: "text",
+       required: true
+    },
+    GOV_0_02: {
+      id: "GOV_0_02",
+      section: "0",
+      sectionTitle: "Personal Information",
+      question: "What is your email address?",
+      type: "text", required: true
+    },
+    GOV_0_03: {
+      id: "GOV_0_03",
+      section: "0",
+      sectionTitle: "Personal Information",
+      question: "What is your phone number?",
+      type: "text", required: true
+    },
+    GOV_0_04: {
+      id: "GOV_0_04",
+      section: "0",
+      sectionTitle: "Personal Information",
+      question: "What is your entity name?",
+      type: "text", required: true
+    },
     // Section A - Organisation and Mandate
     GOV_A_01: {
       id: "GOV_A_01",

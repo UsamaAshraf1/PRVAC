@@ -5,6 +5,12 @@ export const academiaQuestionnaire: Questionnaire = {
   title: "Academia Instrument",
   description: "24 questions for universities, research institutions, and technical institutes",
   sections: [
+      {
+      id: "0",
+      title: "Section 0: Personal Information",
+      description: "  Collect respondent's contact details for follow-up and validation purposes",
+      questionIds: ["ACAD_0_01", "ACAD_0_02", "ACAD_0_03", "ACAD_0_04"],
+    },
     {
       id: "A",
       title: "Section A: Institutional Profile",
@@ -46,6 +52,36 @@ export const academiaQuestionnaire: Questionnaire = {
     },
   ],
   questions: {
+    // Section 0 - Personal Information
+    ACAD_0_01: {
+      id: "ACAD_0_01",
+      section: "0",
+      sectionTitle: "Personal Information",
+      question: "What is your name?",
+      type: "text",
+       required: true
+    },
+    ACAD_0_02: {
+      id: "ACAD_0_02",
+      section: "0",
+      sectionTitle: "Personal Information",
+      question: "What is your email address?",
+      type: "text", required: true
+    },
+    ACAD_0_03: {
+      id: "ACAD_0_03",
+      section: "0",
+      sectionTitle: "Personal Information",
+      question: "What is your phone number?",
+      type: "text", required: true
+    },
+    ACAD_0_04: {
+      id: "ACAD_0_04",
+      section: "0",
+      sectionTitle: "Personal Information",
+      question: "What is your entity name?",
+      type: "text", required: true
+    },
     // Section A - Institutional Profile
     ACAD_A_01: {
       id: "ACAD_A_01",

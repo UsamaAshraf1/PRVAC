@@ -5,6 +5,12 @@ export const industryQuestionnaire: Questionnaire = {
   title: "Industry Instrument",
   description: "28 questions for manufacturing firms, exporters, and industrial enterprises",
   sections: [
+      {
+      id: "0",
+      title: "Section 0: Personal Information",
+      description: "  Collect respondent's contact details for follow-up and validation purposes",
+      questionIds: ["IND_0_01", "IND_0_02", "IND_0_03", "IND_0_04"],
+    },
     {
       id: "A",
       title: "Section A: Firm Profile",
@@ -57,6 +63,36 @@ export const industryQuestionnaire: Questionnaire = {
     },
   ],
   questions: {
+    // Section 0 - Personal Information
+    IND_0_01: {
+      id: "IND_0_01",
+      section: "0",
+      sectionTitle: "Personal Information",
+      question: "What is your name?",
+      type: "text",
+       required: true
+    },
+    IND_0_02: {
+      id: "IND_0_02",
+      section: "0",
+      sectionTitle: "Personal Information",
+      question: "What is your email address?",
+      type: "text", required: true
+    },
+    IND_0_03: {
+      id: "IND_0_03",
+      section: "0",
+      sectionTitle: "Personal Information",
+      question: "What is your phone number?",
+      type: "text", required: true
+    },
+    IND_0_04: {
+      id: "IND_0_04",
+      section: "0",
+      sectionTitle: "Personal Information",
+      question: "What is your entity name?",
+      type: "text", required: true
+    },
     // Section A - Firm Profile
     IND_A_01: {
       id: "IND_A_01",

@@ -1,10 +1,17 @@
-import { Questionnaire } from "@/lib/types"
+import { Questionnaire } from "@/lib/types";
 
 export const startupsQuestionnaire: Questionnaire = {
   id: "startups",
   title: "Start-ups Instrument",
   description: "19 questions for robotics and automation start-ups",
   sections: [
+    {
+      id: "0",
+      title: "Section 0: Personal Information",
+      description:
+        "  Collect respondent's contact details for follow-up and validation purposes",
+      questionIds: ["STR_0_01", "STR_0_02", "STR_0_03", "STR_0_04"],
+    },
     {
       id: "A",
       title: "Section A: Company Profile",
@@ -15,7 +22,14 @@ export const startupsQuestionnaire: Questionnaire = {
       id: "B",
       title: "Section B: Technology, Product, Customers",
       description: "Product, technology, customers, and IP position",
-      questionIds: ["STR_B_06", "STR_B_07", "STR_B_08", "STR_B_09", "STR_B_10", "STR_B_11"],
+      questionIds: [
+        "STR_B_06",
+        "STR_B_07",
+        "STR_B_08",
+        "STR_B_09",
+        "STR_B_10",
+        "STR_B_11",
+      ],
     },
     {
       id: "C",
@@ -31,6 +45,39 @@ export const startupsQuestionnaire: Questionnaire = {
     },
   ],
   questions: {
+    // Section 0 - Personal Information
+    STR_0_01: {
+      id: "STR_0_01",
+      section: "0",
+      sectionTitle: "Personal Information",
+      question: "What is your name?",
+      type: "text",
+      required: true,
+    },
+    STR_0_02: {
+      id: "STR_0_02",
+      section: "0",
+      sectionTitle: "Personal Information",
+      question: "What is your email address?",
+      type: "text",
+      required: true,
+    },
+    STR_0_03: {
+      id: "STR_0_03",
+      section: "0",
+      sectionTitle: "Personal Information",
+      question: "What is your phone number?",
+      type: "text",
+      required: true,
+    },
+    STR_0_04: {
+      id: "STR_0_04",
+      section: "0",
+      sectionTitle: "Personal Information",
+      question: "What is your entity name?",
+      type: "text",
+      required: true,
+    },
     // Section A - Company Profile
     STR_A_01: {
       id: "STR_A_01",
@@ -40,7 +87,12 @@ export const startupsQuestionnaire: Questionnaire = {
       type: "composite",
       required: true,
       compositeFields: [
-        { key: "year_founded", label: "Year Founded", type: "number", required: true },
+        {
+          key: "year_founded",
+          label: "Year Founded",
+          type: "number",
+          required: true,
+        },
         {
           key: "stage",
           label: "Current Stage",
@@ -98,12 +150,21 @@ export const startupsQuestionnaire: Questionnaire = {
       type: "composite",
       required: true,
       compositeFields: [
-        { key: "total_usd_k", label: "Total Capital (USD thousands)", type: "number", required: true },
+        {
+          key: "total_usd_k",
+          label: "Total Capital (USD thousands)",
+          type: "number",
+          required: true,
+        },
         { key: "founder_pct", label: "Founder (%)", type: "number" },
         { key: "angel_pct", label: "Angel (%)", type: "number" },
         { key: "vc_pct", label: "VC (%)", type: "number" },
         { key: "grant_pct", label: "Grant (%)", type: "number" },
-        { key: "corporate_revenue_pct", label: "Corporate Revenue (%)", type: "number" },
+        {
+          key: "corporate_revenue_pct",
+          label: "Corporate Revenue (%)",
+          type: "number",
+        },
         { key: "other_pct", label: "Other (%)", type: "number" },
       ],
     },
@@ -177,7 +238,10 @@ export const startupsQuestionnaire: Questionnaire = {
         { value: "no_exports", label: "No Exports" },
         { value: "pilot_abroad", label: "Pilot Abroad" },
         { value: "active_1_country", label: "Active in 1 Country" },
-        { value: "active_multi_country", label: "Active in Multiple Countries" },
+        {
+          value: "active_multi_country",
+          label: "Active in Multiple Countries",
+        },
       ],
     },
     STR_B_10: {
@@ -218,7 +282,8 @@ export const startupsQuestionnaire: Questionnaire = {
       id: "STR_B_11",
       section: "B",
       sectionTitle: "Technology, Product, Customers",
-      question: "What resources do you need to reach full commercial readiness?",
+      question:
+        "What resources do you need to reach full commercial readiness?",
       type: "multi-number",
       required: true,
       numberFields: [
@@ -232,7 +297,8 @@ export const startupsQuestionnaire: Questionnaire = {
       id: "STR_C_12",
       section: "C",
       sectionTitle: "Ecosystem & Pivot Questions",
-      question: "What is your engagement with Pakistani academia (last 24 months)?",
+      question:
+        "What is your engagement with Pakistani academia (last 24 months)?",
       type: "select",
       required: true,
       options: [
@@ -247,7 +313,8 @@ export const startupsQuestionnaire: Questionnaire = {
       id: "STR_C_13",
       section: "C",
       sectionTitle: "Ecosystem & Pivot Questions",
-      question: "What is your engagement with Pakistani industry as customer/partner?",
+      question:
+        "What is your engagement with Pakistani industry as customer/partner?",
       type: "select",
       required: true,
       options: [
@@ -284,7 +351,8 @@ export const startupsQuestionnaire: Questionnaire = {
       id: "STR_C_15",
       section: "C",
       sectionTitle: "Ecosystem & Pivot Questions",
-      question: "What tech/skill/asset do you have but cannot reach customers/capital/partners?",
+      question:
+        "What tech/skill/asset do you have but cannot reach customers/capital/partners?",
       type: "rank",
       rankCount: 3,
       required: true,
@@ -308,11 +376,17 @@ export const startupsQuestionnaire: Questionnaire = {
       id: "STR_D_16",
       section: "D",
       sectionTitle: "Investment Readiness",
-      question: "How much capital can you absorb productively in 24 months and from what source?",
+      question:
+        "How much capital can you absorb productively in 24 months and from what source?",
       type: "composite",
       required: true,
       compositeFields: [
-        { key: "capital_usd_k", label: "Capital Absorbable (USD thousands)", type: "number", required: true },
+        {
+          key: "capital_usd_k",
+          label: "Capital Absorbable (USD thousands)",
+          type: "number",
+          required: true,
+        },
         {
           key: "preferred_sources",
           label: "Preferred Sources (Rank 2)",
@@ -334,7 +408,8 @@ export const startupsQuestionnaire: Questionnaire = {
       id: "STR_D_17",
       section: "D",
       sectionTitle: "Investment Readiness",
-      question: "How willing are you to relocate abroad if Pakistani environment does not improve?",
+      question:
+        "How willing are you to relocate abroad if Pakistani environment does not improve?",
       description: "1 = Will never leave, 5 = Actively planning to relocate",
       type: "likert",
       required: true,
@@ -343,7 +418,8 @@ export const startupsQuestionnaire: Questionnaire = {
       id: "STR_D_18",
       section: "D",
       sectionTitle: "Investment Readiness",
-      question: "Rank the top 3 PRASC interventions that would most accelerate your growth",
+      question:
+        "Rank the top 3 PRASC interventions that would most accelerate your growth",
       type: "rank",
       rankCount: 3,
       required: true,
@@ -355,18 +431,22 @@ export const startupsQuestionnaire: Questionnaire = {
         { value: "export_certification", label: "Export Certification" },
         { value: "incubator_facility", label: "Incubator Facility" },
         { value: "regulatory_sandbox", label: "Regulatory Sandbox" },
-        { value: "public_procurement_carveout", label: "Public Procurement Carve-out" },
+        {
+          value: "public_procurement_carveout",
+          label: "Public Procurement Carve-out",
+        },
       ],
     },
     STR_D_19: {
       id: "STR_D_19",
       section: "D",
       sectionTitle: "Investment Readiness",
-      question: "What single decisive Government action in the next 90 days would help you most?",
+      question:
+        "What single decisive Government action in the next 90 days would help you most?",
       description: "Max 280 characters",
       type: "text",
       maxChars: 280,
       required: true,
     },
   },
-}
+};

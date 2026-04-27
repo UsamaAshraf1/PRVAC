@@ -5,6 +5,12 @@ export const investorsQuestionnaire: Questionnaire = {
   title: "Investors Instrument",
   description: "16 questions for banks, VCs, family offices, DFIs, and capital providers",
   sections: [
+      {
+      id: "0",
+      title: "Section 0: Personal Information",
+      description: "  Collect respondent's contact details for follow-up and validation purposes",
+      questionIds: ["INV_0_01", "INV_0_02", "INV_0_03", "INV_0_04"],
+    },
     {
       id: "A",
       title: "Section A: Investor Profile",
@@ -31,6 +37,36 @@ export const investorsQuestionnaire: Questionnaire = {
     },
   ],
   questions: {
+    // Section 0 - Personal Information
+    INV_0_01: {
+      id: "INV_0_01",
+      section: "0",
+      sectionTitle: "Personal Information",
+      question: "What is your name?",
+      type: "text",
+       required: true
+    },
+    INV_0_02: {
+      id: "INV_0_02",
+      section: "0",
+      sectionTitle: "Personal Information",
+      question: "What is your email address?",
+      type: "text", required: true
+    },
+    INV_0_03: {
+      id: "INV_0_03",
+      section: "0",
+      sectionTitle: "Personal Information",
+      question: "What is your phone number?",
+      type: "text", required: true
+    },
+    INV_0_04: {
+      id: "INV_0_04",
+      section: "0",
+      sectionTitle: "Personal Information",
+      question: "What is your entity name?",
+      type: "text", required: true
+    },
     // Section A - Investor Profile
     INV_A_01: {
       id: "INV_A_01",
