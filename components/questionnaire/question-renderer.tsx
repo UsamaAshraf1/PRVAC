@@ -1,8 +1,8 @@
 "use client"
 
 import { Question } from "@/lib/types"
-import { SelectQuestion } from "./inputs/select-question"
-import { MultiSelectQuestion } from "./inputs/multi-select-question"
+import { SelectOtherValue, SelectQuestion } from "./inputs/select-question"
+import { MultiSelectOtherValue, MultiSelectQuestion } from "./inputs/multi-select-question"
 import { NumberQuestion } from "./inputs/number-question"
 import { PercentageQuestion } from "./inputs/percentage-question"
 import { TextQuestion } from "./inputs/text-question"
@@ -49,7 +49,7 @@ export function QuestionRenderer({
         return (
           <SelectQuestion
             options={question.options || []}
-            value={value as string}
+            value={value as string | SelectOtherValue}
             onChange={handleValueChange}
           />
         )
@@ -57,7 +57,7 @@ export function QuestionRenderer({
         return (
           <MultiSelectQuestion
             options={question.options || []}
-            value={value as string[]}
+            value={value as string[] | MultiSelectOtherValue}
             onChange={handleValueChange}
           />
         )

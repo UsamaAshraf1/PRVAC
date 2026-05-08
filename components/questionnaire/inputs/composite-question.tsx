@@ -3,6 +3,7 @@
 import { CompositeField, QuestionOption } from "@/lib/types"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+
 import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
 import {
@@ -26,6 +27,10 @@ export function CompositeQuestion({
 }: CompositeQuestionProps) {
   const handleFieldChange = (key: string, fieldValue: unknown) => {
     onChange({ ...value, [key]: fieldValue })
+  }
+
+  const handleOtherTextChange = (key: string, otherText: string) => {
+    onChange({ ...value, [`${key}OtherText`]: otherText })
   }
 
   const renderField = (field: CompositeField) => {
@@ -63,26 +68,53 @@ export function CompositeQuestion({
         )
 
       case "select":
+        const selectedValue = (value[field.key] as string) || ""
+        const selectedOption = field.options?.find((option) => option.value === selectedValue)
+        const selectOtherSelected = selectedOption ? isOtherOption(selectedOption) : false
+
         return (
-          <Select
-            value={(value[field.key] as string) || ""}
-            onValueChange={(val) => handleFieldChange(field.key, val)}
-          >
-            <SelectTrigger id={field.key}>
-              <SelectValue placeholder="Select..." />
-            </SelectTrigger>
-            <SelectContent>
-              {field.options?.map((option: QuestionOption) => (
-                <SelectItem key={option.value} value={option.value}>
-                  {option.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <div className="space-y-2">
+            <Select
+              value={selectedValue}
+              onValueChange={(val) => {
+                const option = field.options?.find((item) => item.value === val)
+                const nextValue = { ...value, [field.key]: val }
+
+                if (!option || !isOtherOption(option)) {
+                  delete nextValue[`${field.key}OtherText`]
+                }
+
+                onChange(nextValue)
+              }}
+            >
+              <SelectTrigger id={field.key}>
+                <SelectValue placeholder="Select..." />
+              </SelectTrigger>
+              <SelectContent>
+                {field.options?.map((option: QuestionOption) => (
+                  <SelectItem key={option.value} value={option.value}>
+                    {option.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            {selectOtherSelected && (
+              <Input
+                value={(value[`${field.key}OtherText`] as string) || ""}
+                onChange={(event) => handleOtherTextChange(field.key, event.target.value)}
+                placeholder="Please specify"
+              />
+            )}
+          </div>
         )
 
       case "multi-select":
         const selectedValues = (value[field.key] as string[]) || []
+        const multiSelectOtherSelected = field.options?.some(
+          (option) => selectedValues.includes(option.value) && isOtherOption(option)
+        )
+
         return (
           <div className="space-y-2">
             {field.options?.map((option: QuestionOption) => (
@@ -91,14 +123,24 @@ export function CompositeQuestion({
                   id={`${field.key}-${option.value}`}
                   checked={selectedValues.includes(option.value)}
                   onCheckedChange={(checked) => {
+                    const nextValues = checked
+                      ? [...selectedValues, option.value]
+                      : selectedValues.filter((v) => v !== option.value)
+                    const stillHasOther = field.options?.some(
+                      (item) => nextValues.includes(item.value) && isOtherOption(item)
+                    )
+
                     if (checked) {
-                      handleFieldChange(field.key, [...selectedValues, option.value])
-                    } else {
-                      handleFieldChange(
-                        field.key,
-                        selectedValues.filter((v) => v !== option.value)
-                      )
+                      handleFieldChange(field.key, nextValues)
+                      return
                     }
+
+                    const nextValue = { ...value, [field.key]: nextValues }
+                    if (!stillHasOther) {
+                      delete nextValue[`${field.key}OtherText`]
+                    }
+
+                    onChange(nextValue)
                   }}
                 />
                 <Label
@@ -109,6 +151,14 @@ export function CompositeQuestion({
                 </Label>
               </div>
             ))}
+
+            {multiSelectOtherSelected && (
+              <Input
+                value={(value[`${field.key}OtherText`] as string) || ""}
+                onChange={(event) => handleOtherTextChange(field.key, event.target.value)}
+                placeholder="Please specify"
+              />
+            )}
           </div>
         )
 
@@ -165,4 +215,11 @@ export function CompositeQuestion({
       ))}
     </div>
   )
+}
+
+function isOtherOption(option: QuestionOption) {
+  const value = option.value.toLowerCase()
+  const label = option.label.toLowerCase()
+
+  return value.includes("other") || label.includes("other")
 }
